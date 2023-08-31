@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <tittle>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</tittle>
+</head>
+<body>
+{block content}
+	
+<table border="1" n:if="$discussionItems">
+	<tr>
+		<th>Přezdívka</th>
+		<th>Email</th>
+		<th>Příspěvek</th>
+    	<th></th>
+	</tr>
+	<tr n:foreach="$discussionItems as $item">
+		<td>{$item['prezdivka']}</td>
+		<td>{$item['email']}</td>
+		<td>{$item['data']}</td>
+		<td>
+			<a n:href="Discussion:detail $item['id']">detail</a>
+			<a n:href="Discussion:addPositive $item['id']">Líbí se mi:{$item['pozitivni']}</a>
+			<a n:href="Discussion:addNegative $item['id']">Nelíbí se mi:{$item['negativni']}</a>
+		</td>    
+	</tr>
+</table>
+
+{control discussionForm}
+
+{/block}
+
+{block title}
+{$title}
+{/block}
+</body>
+</html>
